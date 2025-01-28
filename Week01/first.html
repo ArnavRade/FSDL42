@@ -60,21 +60,45 @@
             width: 100%;
             bottom: 0;
         }
+        .sidebar {
+            width: 250px;
+            background-color: #34495e;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .main-content {
+            flex-grow: 1;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .sidebar h2, .main-content h1 {
+            margin-top: 0;
+        }
+        .sidebar a {
+            color: #ecf0f1;
+            text-decoration: none;
+            display: block;
+            margin: 10px 0;
+        }
+        .sidebar a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
     <header>
         <h1>Personal Portfolio</h1>
         <h2>Arnav Rade</h2>
-        <nav>
-            <ul>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
     </header>
     <div class="container">
+        <div class="sidebar">
+            <h2>Menu</h2>
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Blog</a>
+            <a href="#">Contact</a>
+        </div>
+        
         <section id="skills" class="section">
             <h2>Skills</h2>
             <div class="skills">

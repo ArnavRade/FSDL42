@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #dfedf8;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4682b4;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        main {
+            padding: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #4682b4;
+            color: white;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        ul li {
+            background-color: #f9f9f9;
+            margin: 5px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+        .highlight {
+            background-color: #ffeb3b;
+        }
+        .passed::before {
+            content: "✔ ";
+            color: green;
+        }
+        .failed::before {
+            content: "✘ ";
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Yearly Exam Result Declaration</h1>
+        <img src="logo.jpg" alt="School Logo" style="width: 100px; height: auto; display: block; margin-left: 0;">
+    </header>
+    <main>
+        <h2>Student Results</h2>
+        <table>
+            <tr>
+                <th>Student Name</th>
+                <th>Subject</th>
+                <th>Marks</th>
+                <th>Status</th>
+            </tr>
+            <tr>
+                <td>John Doe</td>
+                <td>Mathematics</td>
+                <td>85</td>
+                <td class="passed">Passed</td>
+            </tr>
+            <tr>
+                <td>Jane Smith</td>
+                <td>Science</td>
+                <td>45</td>
+                <td class="failed">Failed</td>
+            </tr>
+            <tr class="highlight">
+                <td>Emily Johnson</td>
+                <td>History</td>
+                <td>92</td>
+                <td class="passed">Passed</td>
+            </tr>
+        </table>
+        <h2>Important Notes</h2>
+        <ul>
+            <li>Results are subject to verification.</li>
+            <li>Re-evaluation requests can be submitted within 15 days.</li>
+            <li>Contact the administration for any queries.</li>
+        </ul>
+    </main>
+</body>
+</html>">
