@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Clash of Clans</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Mini Clash of Clans</h1>
+    </header>
+
+    <div class="game-area">
+        <div class="resources">
+            <h2>Resources</h2>
+            <p>Gold: <span id="gold">100</span></p>
+            <p>Wood: <span id="wood">50</span></p>
+            <button onclick="collectResources()">Collect Resources</button>
+        </div>
+
+        <div class="buildings">
+            <h2>Buildings</h2>
+            <div class="building" id="barracks">
+                <h3>Barracks</h3>
+                <p>Cost: 50 Gold, 30 Wood</p>
+                <button onclick="buildBarracks()">Build Barracks</button>
+            </div>
+            <div class="building" id="goldMine">
+                <h3>Gold Mine</h3>
+                <p>Cost: 100 Gold, 50 Wood</p>
+                <button onclick="buildGoldMine()">Build Gold Mine</button>
+            </div>
+        </div>
+
+        <div class="status">
+            <h2>Base Status</h2>
+            <p><strong>Barracks Level:</strong> <span id="barracks-level">0</span></p>
+            <p><strong>Gold Mine Level:</strong> <span id="gold-mine-level">0</span></p>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 Mini Clash of Clans</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
