@@ -10,20 +10,20 @@ const events = [
 ];
 
 const EventList = () => {
-  return (
+return (
     <div className="event-list">
-      <h1>Upcoming Events</h1>
-      {events.map((event) => (
-        <div key={event.id} className="event-item">
-          <h2>{event.name}</h2>
-          <p>{event.date} - {event.location}</p>
-          <Link to={`/event/${event.id}`}>View Details</Link>
-          <br />
-          <Link to={`/register/${event.id}`}>Register</Link>
-        </div>
-      ))}
+        <h1>Upcoming Events</h1>
+        {events.map((event) => (
+            <div key={event.id} className="event-item">
+                <h2>{event.name}</h2>
+                <p>{event.date} - {event.location}</p>
+                <button onClick={() => window.location.href = `/event/${event.id}`} className="btn">View Details</button>
+                <span style={{ margin: '0 10px' }}></span>
+                <button onClick={() => window.location.href = `/register/${event.id}`} className="btn">Register</button>
+            </div>
+        ))}
     </div>
-  );
+);
 };
 
 export default EventList;
