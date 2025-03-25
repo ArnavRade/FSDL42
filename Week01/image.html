@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circular Image Center</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #0947b9; /* Optional background color */
+        }
+
+        .circular-image {
+            width: 200px; /* Adjust size as needed */
+            height: 200px; /* Must match width for perfect circle */
+            border-radius: 50%; /* Makes the image circular */
+            overflow: hidden; /* Ensures the image stays within the circle */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow */
+            border: 5px solid #fff; /* Adds a white border */
+            transition: transform 0.3s ease; /* Smooth transition for hover effect */
+        }
+
+        .circular-image:hover {
+            transform: scale(1.1); /* Scales the image up on hover */
+        }
+
+        .circular-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures the image covers the entire circle */
+        }
+    </style>
+</head>
+<body>
+    <div class="circular-image">
+        <img src="BMW.svg" alt="Circular Image">
+    </div>
+</body>
+</html>
