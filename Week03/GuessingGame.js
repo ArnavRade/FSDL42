@@ -21,7 +21,7 @@ class GuessingGame {
   }
 }
 
-// Initialize game
+// Initialize  game
 let game = new GuessingGame();
 const rl = readline.createInterface({
   input: process.stdin,
