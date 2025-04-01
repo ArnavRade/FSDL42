@@ -1,0 +1,206 @@
+<html>
+<head>
+  <title>Student Records</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-image: linear-gradient(to bottom, #4567b7, #6495ed);
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      background-color: #fff;
+      padding: 20px;
+      border: 1px solid #ddd;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 10px;
+    }
+    .table-container {
+      overflow-x: auto;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background-color: #2266cc;
+      color: #fff;
+    }
+    .search-bar {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 100%;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgb(0,0,0);
+      background-color: rgba(0,0,0,0.4);
+    }
+    .modal-content {
+      background-color: #fefefe;
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .btn {
+      background-color: #2266cc;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      color: #fff;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background-color: #6495ed;
+    }
+    h1 {
+      color: #2266cc;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Student Records</h1>
+    <input type="search" id="search" placeholder="Search..." class="search-bar">
+    <div class="table-container">
+      <table id="student-table">
+        <tr>
+          <th>Student ID</th>
+          <th>Name</th>
+          <th>Grade</th>
+          <th>Edit/Delete</th>
+        </tr>
+      </table>
+    </div>
+    <form id="add-student-form">
+      <label for="student-id">Student ID:</label>
+      <input type="number" id="student-id" required><br><br>
+      <label for="name">Name:</label>
+      <input type="text" id="name" required><br><br>
+      <label for="grade">Grade:</label>
+      <input type="text" id="grade" required><br><br>
+      <input type="submit" value="Add Student" class="btn">
+    </form>
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>Edit Student</h2>
+        <form id="update-student-form">
+          <label for="update-student-id">Student ID:</label>
+          <input type="number" id="update-student-id" required><br><br>
+          <label for="update-name">Name:</label>
+          <input type="text" id="update-name" required><br><br>
+          <label for="update-grade">Grade:</label>
+          <input type="text" id="update-grade" required><br><br>
+          <input type="submit" value="Update Student" class="btn">
+          <button class="btn" onclick="deleteStudent()">Delete Student</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script>
+    let students = [
+      { id: 1, name: 'John Doe', grade: 'A' },
+      { id: 2, name: 'Jane Doe', grade: 'B' },
+      { id: 3, name: 'Bob Smith', grade: 'C' }
+    ];
+    let selectedStudent;
+    
+    function openModal(id) {
+      selectedStudent = students.find(student => student.id == id);
+      document.getElementById('update-student-id').value = selectedStudent.id;
+      document.getElementById('update-name').value = selectedStudent.name;
+      document.getElementById('update-grade').value = selectedStudent.grade;
+      document.getElementById('myModal').style.display = 'block';
+    }
+    
+    function closeModal() {
+      document.getElementById('myModal').style.display = 'none';
+    }
+    
+    function updateStudentTable() {
+      let table = document.getElementById('student-table');
+      let rows = table.rows;
+      for (let i = rows.length - 1; i > 0; i--) {
+        table.deleteRow(i);
+      }
+      students.forEach(student => {
+        let row = table.insertRow(-1);
+        let cell1 = row.insertCell(0);
+        let cell2 = row.insertCell(1);
+        let cell3 = row.insertCell(2);
+        let cell4 = row.insertCell(3);
+        cell1.innerHTML = student.id;
+        cell2.innerHTML = student.name;
+        cell3.innerHTML = student.grade;
+        cell4.innerHTML = '<button class="btn" onclick="openModal(' + student.id + ')">Edit/Delete</button>';
+      });
+    }
+    
+    updateStudentTable();
+    
+    document.getElementById('add-student-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      let id = document.getElementById('student-id').value;
+      let name = document.getElementById('name').value;
+      let grade = document.getElementById('grade').value;
+      students.push({ id: parseInt(id), name, grade });
+      updateStudentTable();
+      document.getElementById('student-id').value = '';
+      document.getElementById('name').value = '';
+      document.getElementById('grade').value = '';
+    });
+    
+    document.getElementById('update-student-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      let id = document.getElementById('update-student-id').value;
+      let name = document.getElementById('update-name').value;
+      let grade = document.getElementById('update-grade').value;
+      selectedStudent.id = parseInt(id);
+      selectedStudent.name = name;
+      selectedStudent.grade = grade;
+      updateStudentTable();
+      closeModal();
+    });
+    
+    function deleteStudent() {
+      let index = students.indexOf(selectedStudent);
+      students.splice(index, 1);
+      updateStudentTable();
+      closeModal();
+    }
+  </script>
+</body>
+</html>
